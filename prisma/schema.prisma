@@ -1,0 +1,58 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  password  String
+  name      String
+  role      String   @default("PIMPINAN") // ADMIN, PIMPINAN, OPERATOR_SATUAN
+  satuanId  String?
+  satuan    Satuan?  @relation(fields: [satuanId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Satuan {
+  id          String               @id @default(uuid())
+  nama        String               @unique
+  kodeSatuan  String               @unique
+  standar     MasterStandarAlat[]
+  inventaris  InventarisTergelar[]
+  users       User[]
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+}
+
+model MasterStandarAlat {
+  id          String   @id @default(uuid())
+  satuanId    String
+  satuan      Satuan   @relation(fields: [satuanId], references: [id], onDelete: Cascade)
+  kategori    String
+  namaAlat    String
+  jumlahWajib Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([satuanId, namaAlat])
+}
+
+model InventarisTergelar {
+  id          String      @id @default(uuid())
+  satuanId    String
+  satuan      Satuan      @relation(fields: [satuanId], references: [id], onDelete: Cascade)
+  kategori    String
+  namaAlat    String
+  jumlah      Int         @default(0)
+  kondisi     String      @default("BAIK") // BAIK, RUSAK
+  keterangan  String?
+  diperbarui  DateTime    @default(now())
+
+  @@index([satuanId, namaAlat])
+}

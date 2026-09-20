@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ─── Cosmic Night Theme ─── */
+    --background: 240 35% 6%;
+    --foreground: 240 30% 92%;
+
+    --card: 240 32% 10%;
+    --card-foreground: 240 30% 92%;
+
+    --popover: 240 32% 12%;
+    --popover-foreground: 240 30% 92%;
+
+    --primary: 248 100% 73%;
+    --primary-foreground: 240 35% 6%;
+
+    --secondary: 243 32% 25%;
+    --secondary-foreground: 242 100% 88%;
+
+    --muted: 240 28% 16%;
+    --muted-foreground: 240 18% 62%;
+
+    --accent: 240 30% 22%;
+    --accent-foreground: 240 30% 92%;
+
+    --destructive: 350 100% 66%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 26% 22%;
+    --input: 240 26% 18%;
+    --ring: 248 100% 73%;
+
+    --chart-1: 248 100% 73%;
+    --chart-2: 199 89% 64%;
+    --chart-3: 160 60% 52%;
+    --chart-4: 325 100% 72%;
+    --chart-5: 39 96% 66%;
+
+    --sidebar: 240 36% 8%;
+    --sidebar-foreground: 240 30% 92%;
+    --sidebar-primary: 248 100% 73%;
+    --sidebar-primary-foreground: 240 35% 6%;
+    --sidebar-accent: 240 30% 18%;
+    --sidebar-accent-foreground: 240 30% 92%;
+    --sidebar-border: 240 26% 18%;
+    --sidebar-ring: 248 100% 73%;
+
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --radius: 0.625rem;
+
+    --shadow-color: 240 50% 3%;
+    --shadow-2xs: 0px 2px 8px 0px hsl(240 50% 3% / 0.4);
+    --shadow-xs:  0px 2px 8px 0px hsl(240 50% 3% / 0.4);
+    --shadow-sm:  0px 4px 12px 0px hsl(240 50% 3% / 0.5), 0px 1px 3px -1px hsl(240 50% 3% / 0.4);
+    --shadow:     0px 4px 16px 0px hsl(240 50% 3% / 0.5), 0px 2px 4px -1px hsl(240 50% 3% / 0.4);
+    --shadow-md:  0px 8px 24px 0px hsl(240 50% 3% / 0.5), 0px 4px 8px -2px hsl(240 50% 3% / 0.4);
+    --shadow-lg:  0px 12px 32px 0px hsl(240 50% 3% / 0.6), 0px 6px 12px -3px hsl(240 50% 3% / 0.4);
+    --shadow-xl:  0px 20px 48px 0px hsl(240 50% 3% / 0.6), 0px 10px 20px -4px hsl(240 50% 3% / 0.4);
+    --shadow-2xl: 0px 32px 64px 0px hsl(240 50% 3% / 0.7);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ─── Cosmic Night Custom Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(240 35% 8%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(240 26% 28%);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(248 60% 50%);
+}
+
+/* ─── Glow utilities ─── */
+.glow-primary {
+  box-shadow: 0 0 24px hsl(248 100% 73% / 0.15);
+}
+.glow-primary-sm {
+  box-shadow: 0 0 12px hsl(248 100% 73% / 0.12);
+}
+
+/* ─── Glassmorphism card ─── */
+.glass-card {
+  background: hsl(240 32% 10% / 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid hsl(240 26% 22%);
+}
+
+/* ─── Gradient text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #a78bfa, #818cf8, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Active nav glow ─── */
+.nav-active {
+  background: linear-gradient(135deg, hsl(248 70% 30% / 0.7), hsl(248 70% 25% / 0.5));
+  box-shadow: inset 0 0 0 1px hsl(248 100% 73% / 0.25), 0 0 12px hsl(248 100% 73% / 0.08);
+}
+
+/* ─── Subtle noise/grid background ─── */
+.grid-bg {
+  background-image:
+    linear-gradient(hsl(240 26% 22% / 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(240 26% 22% / 0.25) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ─── Input / Select Cosmic Night overrides ─── */
+select option {
+  background-color: hsl(240 32% 12%);
+  color: hsl(240 30% 92%);
+}
